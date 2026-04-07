@@ -13,16 +13,24 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --c-bg: #080c14;
-      --c-bg2: #0d1320;
-      --c-surface: rgba(255,255,255,0.04);
-      --c-border: rgba(255,255,255,0.08);
-      --c-accent: #6366f1;
-      --c-accent2: #a78bfa;
-      --c-green: #10b981;
-      --c-white: #f8fafc;
+      /* Dark IDE-inspired base + cyan “syntax” + warm commerce accent */
+      --c-bg: #0a0e14;
+      --c-bg2: #101922;
+      --c-bg-rgb: 10, 14, 20;
+      --c-surface: rgba(255,255,255,0.045);
+      --c-border: rgba(148,163,184,0.12);
+      --c-accent: #22d3ee;
+      --c-accent-rgb: 34, 211, 238;
+      --c-accent2: #7dd3fc;
+      --c-accent2-rgb: 125, 211, 252;
+      --c-warm: #fb923c;
+      --c-warm-rgb: 251, 146, 60;
+      --c-teal: #2dd4bf;
+      --c-teal-rgb: 45, 212, 191;
+      --c-green: #4ade80;
+      --c-white: #f1f5f9;
       --c-muted: #94a3b8;
-      --c-subtle: #334155;
+      --c-subtle: #64748b;
       --font-display: 'Syne', sans-serif;
       --font-body: 'DM Sans', sans-serif;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -53,7 +61,7 @@
     #cursor-ring {
       position: fixed;
       width: 40px; height: 40px;
-      border: 1.5px solid rgba(99,102,241,0.6);
+      border: 1.5px solid rgba(var(--c-accent-rgb),0.55);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
@@ -82,7 +90,7 @@
       transition: background 0.4s, backdrop-filter 0.4s;
     }
     nav.scrolled {
-      background: rgba(8,12,20,0.85);
+      background: rgba(var(--c-bg-rgb),0.88);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--c-border);
     }
@@ -109,18 +117,18 @@
     .nav-links a:hover { color: var(--c-white); background: var(--c-surface); }
     .nav-cta {
       margin-left: 8px;
-      background: var(--c-accent) !important;
-      color: #fff !important;
+      background: linear-gradient(135deg, #fb923c, #f97316) !important;
+      color: #0a0e14 !important;
       padding: 8px 20px !important;
     }
-    .nav-cta:hover { background: #4f46e5 !important; transform: translateY(-1px); }
+    .nav-cta:hover { background: linear-gradient(135deg, #f97316, #ea580c) !important; transform: translateY(-1px); }
 
     /* HAMBURGER */
     .hamburger { display: none; cursor: none; background: none; border: none; flex-direction: column; gap: 5px; margin-left: auto; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--c-white); transition: 0.3s; border-radius: 2px; }
     @media (max-width: 768px) {
       nav { padding: 0 24px; }
-      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(8,12,20,0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 20px 24px 32px; border-bottom: 1px solid var(--c-border); }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(var(--c-bg-rgb),0.97); backdrop-filter: blur(20px); flex-direction: column; padding: 20px 24px 32px; border-bottom: 1px solid var(--c-border); }
       .nav-links.open { display: flex; }
       .hamburger { display: flex; }
     }
@@ -134,22 +142,23 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(99,102,241,0.18) 0%, transparent 70%),
-                  radial-gradient(ellipse 50% 40% at 20% 80%, rgba(167,139,250,0.12) 0%, transparent 60%),
-                  linear-gradient(160deg, #080c14 0%, #0a0f1e 50%, #080c14 100%);
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(var(--c-accent-rgb),0.16) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 18% 85%, rgba(var(--c-warm-rgb),0.09) 0%, transparent 58%),
+                  radial-gradient(ellipse 45% 35% at 85% 20%, rgba(var(--c-teal-rgb),0.08) 0%, transparent 55%),
+                  linear-gradient(160deg, #0a0e14 0%, #0d1524 50%, #0a0e14 100%);
     }
     .hero-grid {
       position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(var(--c-accent-rgb),0.07) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(var(--c-accent-rgb),0.05) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse at 60% 40%, rgba(0,0,0,0.6) 0%, transparent 70%);
     }
     .hero-content { position: relative; max-width: 780px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(99,102,241,0.12);
-      border: 1px solid rgba(99,102,241,0.3);
+      background: rgba(var(--c-accent-rgb),0.1);
+      border: 1px solid rgba(var(--c-accent-rgb),0.35);
       border-radius: 100px;
       padding: 6px 16px;
       font-size: 0.8rem; font-weight: 600;
@@ -178,8 +187,9 @@
     .hero-title .line span { display: block; }
     .hero-title .accent { color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.35); }
     .hero-title .gradient {
-      background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #c4b5fd 100%);
+      background: linear-gradient(135deg, #22d3ee 0%, #2dd4bf 42%, #38bdf8 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero-desc {
       font-size: clamp(1rem, 1.5vw, 1.15rem);
@@ -189,15 +199,15 @@
     }
     .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
     .btn-primary-hero {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
       color: #fff; border: none;
       padding: 14px 32px; border-radius: 100px;
       font-size: 0.95rem; font-weight: 600; cursor: none;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 0 rgba(99,102,241,0);
+      box-shadow: 0 0 0 rgba(var(--c-accent-rgb),0);
       text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
     }
-    .btn-primary-hero:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(99,102,241,0.4); color: #fff; }
+    .btn-primary-hero:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(var(--c-accent-rgb),0.38); color: #fff; }
     .btn-ghost-hero {
       background: transparent;
       color: var(--c-muted); border: 1px solid var(--c-border);
@@ -212,8 +222,8 @@
     .orb {
       position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none;
     }
-    .orb-1 { width: 400px; height: 400px; background: rgba(99,102,241,0.15); right: -100px; top: 20%; animation: float1 8s ease-in-out infinite; }
-    .orb-2 { width: 250px; height: 250px; background: rgba(167,139,250,0.1); right: 200px; bottom: 20%; animation: float2 6s ease-in-out infinite; }
+    .orb-1 { width: 400px; height: 400px; background: rgba(var(--c-accent-rgb),0.14); right: -100px; top: 20%; animation: float1 8s ease-in-out infinite; }
+    .orb-2 { width: 250px; height: 250px; background: rgba(var(--c-warm-rgb),0.11); right: 200px; bottom: 20%; animation: float2 6s ease-in-out infinite; }
     @keyframes float1 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-30px) rotate(5deg)} }
     @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(20px)} }
 
@@ -269,7 +279,7 @@
     }
     .about-stats {
       position: absolute; bottom: -20px; right: -20px; z-index: 2;
-      background: rgba(8,12,20,0.9);
+      background: rgba(var(--c-bg-rgb),0.92);
       border: 1px solid var(--c-border);
       backdrop-filter: blur(16px);
       border-radius: 16px; padding: 20px 24px;
@@ -286,7 +296,7 @@
       color: var(--c-muted);
       transition: all 0.2s;
     }
-    .chip:hover { border-color: var(--c-accent); color: var(--c-accent2); background: rgba(99,102,241,0.08); }
+    .chip:hover { border-color: var(--c-accent); color: var(--c-accent2); background: rgba(var(--c-accent-rgb),0.1); }
     .btn-download {
       display: inline-flex; align-items: center; gap: 10px;
       margin-top: 32px;
@@ -296,7 +306,7 @@
       cursor: none; text-decoration: none;
       transition: all 0.2s;
     }
-    .btn-download:hover { border-color: var(--c-accent); background: rgba(99,102,241,0.1); color: var(--c-accent2); }
+    .btn-download:hover { border-color: var(--c-accent); background: rgba(var(--c-accent-rgb),0.12); color: var(--c-accent2); }
 
     /* ── SERVICES ── */
     #service { background: var(--c-bg); }
@@ -311,15 +321,15 @@
     }
     .service-card::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(99,102,241,0.08), transparent);
+      background: linear-gradient(135deg, rgba(var(--c-accent-rgb),0.09), rgba(var(--c-warm-rgb),0.04), transparent);
       opacity: 0; transition: opacity 0.4s;
     }
-    .service-card:hover { transform: translateY(-8px); border-color: rgba(99,102,241,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+    .service-card:hover { transform: translateY(-8px); border-color: rgba(var(--c-accent-rgb),0.35); box-shadow: 0 20px 40px rgba(0,0,0,0.35); }
     .service-card:hover::before { opacity: 1; }
     .service-icon {
       width: 52px; height: 52px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(167,139,250,0.1));
-      border: 1px solid rgba(99,102,241,0.2);
+      background: linear-gradient(135deg, rgba(var(--c-accent-rgb),0.22), rgba(var(--c-teal-rgb),0.12));
+      border: 1px solid rgba(var(--c-accent-rgb),0.28);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; margin-bottom: 24px;
       transition: transform 0.3s;
@@ -359,7 +369,7 @@
     .portfolio-card:hover img { transform: scale(1.06); filter: brightness(0.6) saturate(1.1); }
     .portfolio-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,12,20,0.95) 0%, rgba(8,12,20,0.4) 50%, transparent 100%);
+      background: linear-gradient(to top, rgba(var(--c-bg-rgb),0.96) 0%, rgba(var(--c-bg-rgb),0.42) 50%, transparent 100%);
       display: flex; flex-direction: column; justify-content: flex-end;
       padding: 28px;
       transform: translateY(20px); opacity: 0.7;
@@ -368,7 +378,7 @@
     .portfolio-card:hover .portfolio-overlay { transform: translateY(0); opacity: 1; }
     .portfolio-tag {
       display: inline-flex;
-      background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.4);
+      background: rgba(var(--c-accent-rgb),0.18); border: 1px solid rgba(var(--c-accent-rgb),0.45);
       color: var(--c-accent2); border-radius: 100px;
       padding: 4px 12px; font-size: 0.72rem; font-weight: 600;
       letter-spacing: 0.05em; margin-bottom: 10px; width: fit-content;
@@ -389,7 +399,7 @@
 
     /* ── CTA BAND ── */
     #cta {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+      background: linear-gradient(135deg, #0c1929 0%, #0f766e 42%, #134e4a 100%);
       padding: 80px 48px;
       position: relative; overflow: hidden;
     }
@@ -397,7 +407,14 @@
       content: '';
       position: absolute; top: -50%; left: -10%;
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(var(--c-accent-rgb),0.22) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    #cta::after {
+      content: '';
+      position: absolute; bottom: -40%; right: -15%;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(var(--c-warm-rgb),0.14) 0%, transparent 70%);
       pointer-events: none;
     }
     .cta-content { text-align: center; position: relative; }
@@ -405,7 +422,7 @@
     .cta-content p { color: rgba(255,255,255,0.7); font-size: 1.05rem; margin-bottom: 36px; font-weight: 300; }
     .btn-hire {
       display: inline-flex; align-items: center; gap: 12px;
-      background: #fff; color: #312e81;
+      background: #fff; color: #0f766e;
       border-radius: 100px; padding: 16px 36px;
       font-size: 1rem; font-weight: 700;
       text-decoration: none; cursor: none;
@@ -428,14 +445,14 @@
       content: '"';
       position: absolute; top: 20px; right: 24px;
       font-size: 5rem; line-height: 1;
-      color: rgba(99,102,241,0.12);
+      color: rgba(var(--c-accent-rgb),0.14);
       font-family: Georgia, serif;
     }
-    .t-card:hover { border-color: rgba(99,102,241,0.25); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.2); }
+    .t-card:hover { border-color: rgba(var(--c-accent-rgb),0.3); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.22); }
     .t-badge {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(167,139,250,0.15));
-      border: 1px solid rgba(99,102,241,0.3);
+      background: linear-gradient(135deg, rgba(var(--c-accent-rgb),0.2), rgba(var(--c-warm-rgb),0.12));
+      border: 1px solid rgba(var(--c-accent-rgb),0.32);
       color: var(--c-accent2); font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 5px 12px; border-radius: 100px; margin-bottom: 18px;
@@ -468,10 +485,10 @@
       resize: none;
     }
     .form-field::placeholder { color: var(--c-subtle); }
-    .form-field:focus { border-color: rgba(99,102,241,0.5); box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
+    .form-field:focus { border-color: rgba(var(--c-accent-rgb),0.55); box-shadow: 0 0 0 3px rgba(var(--c-accent-rgb),0.14); }
     textarea.form-field { min-height: 130px; }
     .btn-send {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      background: linear-gradient(135deg, #06b6d4, #0d9488);
       color: #fff; border: none;
       border-radius: 100px; padding: 14px 36px;
       font-size: 0.95rem; font-weight: 600; cursor: none;
@@ -479,7 +496,7 @@
       transition: transform 0.2s, box-shadow 0.2s;
       display: flex; align-items: center; gap: 8px;
     }
-    .btn-send:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(99,102,241,0.35); }
+    .btn-send:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(var(--c-accent-rgb),0.35); }
 
     /* ── FOOTER ── */
     footer {
@@ -568,11 +585,10 @@
     <div class="hero-content">
       <div class="hero-badge">Available for work</div>
       <h1 class="hero-title">
-        <div class="line"><span class="hero-word">Frontend</span></div>
-        <div class="line"><span class="hero-word gradient">Developer</span></div>
-        <div class="line"><span class="hero-word accent">&amp; Designer.</span></div>
+        <div class="line"><span class="hero-word">Software</span></div>
+        <div class="line"><span class="hero-word gradient">Engineer</span></div>
       </h1>
-      <p class="hero-desc">Hi, I'm <strong style="color:var(--c-white);font-weight:500">Awais Khaliq</strong> — crafting pixel-perfect, performant web experiences with Angular, React &amp; modern JavaScript. 3 years building products people love.</p>
+      <p class="hero-desc">Hi, I'm <strong style="color:var(--c-white);font-weight:500">Awais Khaliq</strong> — crafting pixel-perfect, performant web experiences with Angular, NestJS, Shopify &amp; modern JavaScript. 4+ years building products people love.</p>
       <div class="hero-btns">
         <a href="https://dev.portal.io/" target="_blank" class="btn-primary-hero magnetic">View Work <span>→</span></a>
         <a href="#contact" class="btn-ghost-hero magnetic">Get in Touch</a>
@@ -590,14 +606,14 @@
         <div class="about-img-wrap reveal-left">
           <img src="assets/imgs/profile.png" alt="Awais Khaliq">
           <div class="about-stats">
-            <div class="stat-num">3+</div>
+            <div class="stat-num">4+</div>
             <div class="stat-label">Years Experience</div>
           </div>
         </div>
         <div class="about-text reveal-right">
           <div class="section-label">About Me</div>
           <h2 class="section-title">Building the web,<br>one pixel at a time.</h2>
-          <p>A highly experienced Frontend Developer with 3 years of expertise in developing user-friendly, adaptive and responsive websites with optimized cross-browser compatibility and runtime performance.</p>
+          <p>A highly experienced Frontend Developer with 4+ years of expertise in developing user-friendly, adaptive and responsive websites with optimized cross-browser compatibility and runtime performance.</p>
           <p>Spearheaded projects to strengthen brands by creating engaging web layouts. I automate front-end unit and functional tests to ensure seamless deployments.</p>
           <div class="skills-chips">
             <span class="chip">Angular</span>
@@ -650,6 +666,12 @@
           <div class="service-icon">🧪</div>
           <h3>Automation Testing</h3>
           <p>End-to-end testing using Cypress to ensure bug-free deployments and high-quality releases.</p>
+        </div>
+        <div class="service-card reveal-up">
+          <div class="service-num">05</div>
+          <div class="service-icon">🛍️</div>
+          <h3>Shopify Store Development</h3>
+          <p>Custom Shopify themes, storefront setup, product catalog structure, and integrations tailored to your brand.</p>
         </div>
       </div>
     </div>
@@ -711,6 +733,15 @@
           </div>
           <div class="portfolio-arrow">↗</div>
         </a>
+        <a href="https://ibrahimtech-2.myshopify.com/" target="_blank" class="portfolio-card reveal-up">
+          <img src="assets/imgs/ibrahimtech.png" alt="IbrahimTech — tech e-commerce store">
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">E-commerce · Shopify</span>
+            <h4>IbrahimTech</h4>
+            <p>Full-featured tech store — laptops, monitors, printers &amp; accessories</p>
+          </div>
+          <div class="portfolio-arrow">↗</div>
+        </a>
       </div>
     </div>
   </section>
@@ -738,7 +769,7 @@
           <span class="t-badge">Portal.io</span>
           <p>Awais delivered an exceptional Angular application for our dev portal. The UI is clean, performant, and the entire team loved working with him. He understood our requirements quickly and delivered beyond expectations.</p>
           <div class="t-author">
-            <img src="https://ui-avatars.com/api/?name=Portal+Team&background=4f46e5&color=fff&size=90" class="t-avatar" alt="">
+            <img src="https://ui-avatars.com/api/?name=Portal+Team&background=0891b2&color=fff&size=90" class="t-avatar" alt="">
             <div>
               <div class="t-author-name">Portal.io Team</div>
               <div class="t-stars">★★★★★</div>
@@ -760,7 +791,7 @@
           <span class="t-badge">Vendora</span>
           <p>Awais built our Shopify restock inventory dashboard from scratch. The product management interface is intuitive, well-designed, and integrates seamlessly with our workflow. Highly recommended!</p>
           <div class="t-author">
-            <img src="https://ui-avatars.com/api/?name=Vendora+Team&background=7c3aed&color=fff&size=90" class="t-avatar" alt="">
+            <img src="https://ui-avatars.com/api/?name=Vendora+Team&background=f97316&color=fff&size=90" class="t-avatar" alt="">
             <div>
               <div class="t-author-name">Vendora Team</div>
               <div class="t-stars">★★★★★</div>
@@ -1053,7 +1084,7 @@
           if (scrollY >= top && scrollY < bottom) {
             document.querySelectorAll('.nav-links a').forEach(a => {
               a.style.color = '';
-              if (a.getAttribute('href') === '#' + sec.id) a.style.color = '#818cf8';
+              if (a.getAttribute('href') === '#' + sec.id) a.style.color = '#22d3ee';
             });
           }
         });
