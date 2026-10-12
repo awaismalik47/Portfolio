@@ -367,6 +367,16 @@
       filter: brightness(0.8) saturate(0.9);
     }
     .portfolio-card:hover img { transform: scale(1.06); filter: brightness(0.6) saturate(1.1); }
+    /* multi-screenshot card: crossfades through stacked images */
+    .portfolio-slides img { position: absolute; inset: 0; object-position: top; opacity: 0; animation: slideFade 12s infinite; }
+    .portfolio-slides img:nth-child(1) { animation-delay: 0s; }
+    .portfolio-slides img:nth-child(2) { animation-delay: 4s; }
+    .portfolio-slides img:nth-child(3) { animation-delay: 8s; }
+    @keyframes slideFade { 0%, 100% { opacity: 0; } 5%, 33% { opacity: 1; } 38% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .portfolio-slides img { animation: none; }
+      .portfolio-slides img:nth-child(1) { opacity: 1; }
+    }
     .portfolio-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to top, rgba(var(--c-bg-rgb),0.96) 0%, rgba(var(--c-bg-rgb),0.42) 50%, transparent 100%);
@@ -378,9 +388,9 @@
     .portfolio-card:hover .portfolio-overlay { transform: translateY(0); opacity: 1; }
     .portfolio-tag {
       display: inline-flex;
-      background: rgba(var(--c-accent-rgb),0.18); border: 1px solid rgba(var(--c-accent-rgb),0.45);
-      color: var(--c-accent2); border-radius: 100px;
-      padding: 4px 12px; font-size: 0.72rem; font-weight: 600;
+      background: linear-gradient(135deg, #fb923c, #f97316);
+      color: #0a0e14; border-radius: 100px;
+      padding: 4px 12px; font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.05em; margin-bottom: 10px; width: fit-content;
     }
     .portfolio-overlay h4 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--c-white); margin-bottom: 6px; }
@@ -611,24 +621,25 @@
           </div>
         </div>
         <div class="about-text reveal-right">
-          <div class="section-label">About Me</div>
-          <h2 class="section-title">Building the web,<br>one pixel at a time.</h2>
-          <p>A highly experienced Frontend Developer with 4+ years of expertise in developing user-friendly, adaptive and responsive websites with optimized cross-browser compatibility and runtime performance.</p>
-          <p>Spearheaded projects to strengthen brands by creating engaging web layouts. I automate front-end unit and functional tests to ensure seamless deployments.</p>
-          <div class="skills-chips">
-            <span class="chip">Angular</span>
-            <span class="chip">React</span>
-            <span class="chip">TypeScript</span>
-            <span class="chip">HTML / CSS</span>
-            <span class="chip">Node.js</span>
-            <span class="chip">.NET Integration</span>
-            <span class="chip">Cypress</span>
-            <span class="chip">REST APIs</span>
-            <span class="chip">UI/UX</span>
-          </div>
-          <a href="#" class="btn-download magnetic" onclick="myFun()">
-            <i class="ti-download"></i> Download CV
-          </a>
+			<div class="section-label">About Me</div>
+			<h2 class="section-title">Building the web,<br>one pixel at a time.</h2>
+			<p>A highly experienced Frontend Developer with 4+ years of expertise in developing user-friendly, adaptive and responsive websites with optimized cross-browser compatibility and runtime performance.</p>
+			<p>Spearheaded projects to strengthen brands by creating engaging web layouts. I automate front-end unit and functional tests to ensure seamless deployments.</p>
+          	<div class="skills-chips">
+				<span class="chip">Angular</span>
+				<span class="chip">TypeScript</span>
+				<span class="chip">HTML / CSS</span>
+				<span class="chip">Node.js</span>
+				<span class="chip">.NET Integration</span>
+				<span class="chip">Cypress</span>
+				<span class="chip">NestJS</span>
+				<span class="chip">Shopify</span>
+				<span class="chip">REST APIs</span>
+				<span class="chip">UI/UX</span>
+          	</div>
+          	<a href="#" class="btn-download magnetic" onclick="myFun()">
+            	<i class="ti-download"></i> Download CV
+          	</a>
         </div>
       </div>
     </div>
@@ -742,6 +753,17 @@
           </div>
           <div class="portfolio-arrow">↗</div>
         </a>
+        <a href="https://pakistangadgets.com/" target="_blank" class="portfolio-card portfolio-slides reveal-up">
+          <img src="assets/imgs/PakistanGadegets.png" alt="Pakistan Gadgets — homepage">
+          <img src="assets/imgs/PakistanGqaadgets_category.png" alt="Pakistan Gadgets — category page">
+          <img src="assets/imgs/Pakistan_Gadegts_productPage.png" alt="Pakistan Gadgets — product page">
+          <div class="portfolio-overlay">
+            <span class="portfolio-tag">E-commerce · Shopify</span>
+            <h4>Pakistan Gadgets</h4>
+            <p>Shopify store for mics, sound cards &amp; studio gear — nationwide delivery with COD</p>
+          </div>
+          <div class="portfolio-arrow">↗</div>
+        </a>
       </div>
     </div>
   </section>
@@ -816,6 +838,17 @@
             <img src="https://ui-avatars.com/api/?name=Government+Team&background=f59e0b&color=fff&size=90" class="t-avatar" alt="">
             <div>
               <div class="t-author-name">Government Project Team</div>
+              <div class="t-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="t-card reveal-up">
+          <span class="t-badge">Pakistan Gadgets</span>
+          <p>Awais built our Shopify store from the ground up — clean category pages, fast product pages and a smooth COD checkout. Customers find what they need quickly, and orders have grown steadily since launch. He was responsive and easy to work with throughout.</p>
+          <div class="t-author">
+            <img src="https://ui-avatars.com/api/?name=Zaheer&background=7c3aed&color=fff&size=90" class="t-avatar" alt="">
+            <div>
+              <div class="t-author-name">Zaheer</div>
               <div class="t-stars">★★★★★</div>
             </div>
           </div>
